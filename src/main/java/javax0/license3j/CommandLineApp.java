@@ -132,7 +132,7 @@ class CommandLineApp {
             error("keyFile has to be specified from where the key is loaded");
             return;
         }
-        final var format = IOFormat.valueOf(pars.getOrDefault(FORMAT, BINARY,Set.of(TEXT,BINARY)));
+        final var format = IOFormat.valueOf(pars.getOrDefault(FORMAT, BINARY,Set.of(BINARY,BASE_64)));
         try (final var reader = new KeyPairReader(keyFile)) {
             keyPair = merge(keyPair, reader.readPrivate(format));
             final var keyPath = new File(keyFile).getAbsolutePath();
@@ -154,7 +154,7 @@ class CommandLineApp {
             error("keyFile has to be specified from where the key is loaded");
             return;
         }
-        final var format = IOFormat.valueOf(pars.getOrDefault(FORMAT, BINARY,Set.of(TEXT,BINARY)).toUpperCase());
+        final var format = IOFormat.valueOf(pars.getOrDefault(FORMAT, BINARY,Set.of(BINARY,BASE_64)).toUpperCase());
         try (final var reader = new KeyPairReader(keyFile)) {
             keyPair = merge(keyPair, reader.readPublic(format));
             final var keyPath = new File(keyFile).getAbsolutePath();
